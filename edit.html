@@ -38,12 +38,15 @@
     // mengambil id dari URL 
     const urlParams = new URLSearchParams (window.location.search)
     const idSiswa = urlParams.get('id')
+    console.log(idSiswa)
     
     // mengisi form dengan data siswa yang diambil dari Firestore
     const siswa = await ambilDataSiswa(idSiswa)
+    console.log(siswa)
     
     document.getElementById('nis').value = siswa.nis
     document.getElementById('nama').value = siswa.nama
+    document.getElementById('kelas').value =siswa.kelas
     
     const formUbah = document.getElementById('formUbah')
     
@@ -51,8 +54,8 @@
       // mencegah reload halaman
       e.preventDefault()
     
-    const nis = document.getElementById('nis').Value
-    const nama = document.getElementById('nama').Value
+    const nis = document.getElementById('nis').value
+    const nama = document.getElementById('nama').value
     const kelas = document.getElementById('kelas').value
     
     // eksekusi fungsi ubah data siswa 

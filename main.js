@@ -13,7 +13,7 @@ import {
 
 // GANTI DENGAN FIREBASE CONFIG ANDA
 const firebaseConfig = {
-    apiKey: "AIzaSyA2uMQ-SO6cfFcAmoKbaBNDh_N34TYU68o",
+  apiKey: "AIzaSyA2uMQ-SO6cfFcAmoKbaBNDh_N34TYU68o",
   authDomain: "insancemerlang-c6ff2.firebaseapp.com",
   projectId: "insancemerlang-c6ff2",
   storageBucket: "insancemerlang-c6ff2.firebasestorage.app",
@@ -34,7 +34,7 @@ export async function tampilkanDaftarSiswa() {
   const tabel = document.getElementById("tabelData")
   
   // kosongkan isi tabel
-  tabel.innerHTML =""
+  tabel.innerHTML = ""
   
   // loop setiap dokumen dalam snapshot 
   snapshot.forEach((doc) => {
@@ -62,14 +62,14 @@ export async function tampilkanDaftarSiswa() {
     
     //buat tombol edit
     const tombolEdit = document.createElement("a")
-    tombolEdit.textContent="edit"
+    tombolEdit.textContent = "edit"
     tombolEdit.href = "edit.html?id=" + id
     tombolEdit.className = "button edit"
     
     //buat tombol hapus
     const tombolHapus = document.createElement("button")
     tombolHapus.textContent = "Hapus"
-    tombolHapus.className = "button delete" 
+    tombolHapus.className = "button delete"
     tombolHapus.onclick = async () => {
       await hapusSiswa(id)
     }
@@ -102,25 +102,25 @@ export async function tambahDataSiswa() {
     nis: nis,
     nama: nama,
     kelas: kelas
- } )
- 
- //alihkan ke halaman daftar siswa
- window.location.href = 'daftar.html'
+  })
+  
+  //alihkan ke halaman daftar siswa
+  window.location.href = 'daftar.html'
 }
 
 //fungsi untuk menghapus daftar siswa
 export async function hapusSiswa(id) {
   //konfrimasi sebelum menghapus
-  if (!confirm("yakin ingin menghapus data siswa?"))return
+  if (!confirm("yakin ingin menghapus data siswa?")) return
   //menghapus dokumen siswa berdasarkan id
-  await deleteDoc(doc(db, "siswa", id ))
-//refsesh daftar siswa
-await tampilkanDaftarSiswa()
-
+  await deleteDoc(doc(db, "siswa", id))
+  //refsesh daftar siswa
+  await tampilkanDaftarSiswa()
+  
 }
 
 // fungsi untuk mengambil data siswa berdasarkan id
-export async function ambilDataSiswa(id){
+export async function ambilDataSiswa(id) {
   const docRef = doc(db, "siswa", id)
   const docSnap = await getDoc(docRef)
   
@@ -128,13 +128,13 @@ export async function ambilDataSiswa(id){
 }
 
 // fungsi untuk mengubah data siswa
-export async function ubahDataSiswa(id,nis,nama,kelas) {
-  await updateDoc(doc(db, "siswa",id),{
-  nis: nis,
-  nama: nama,
-  kelas: kelas
-})
-
-// alihkan ke halaman daftar siswa 
-window, location,herf = 'daftar.html'
+export async function ubahDataSiswa(id, nis, nama, kelas) {
+  await updateDoc(doc(db, "siswa", id), {
+    nis: nis,
+    nama: nama,
+    kelas: kelas
+  })
+  
+  // alihkan ke halaman daftar siswa 
+  window. location. href = 'daftar.html'
 }
