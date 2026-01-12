@@ -61,7 +61,7 @@ export async function tampilkanDaftarSiswa() {
     const kolomAksi = document.createElement("td")
     
     //buat tombol edit
-    const tombolEdit = document.createElement("button")
+    const tombolEdit = document.createElement("a")
     tombolEdit.textContent="edit"
     tombolEdit.href = "edit.html?id=" + id
     tombolEdit.className = "button edit"
@@ -117,5 +117,24 @@ export async function hapusSiswa(id) {
 //refsesh daftar siswa
 await tampilkanDaftarSiswa()
 
+}
 
+// fungsi untuk mengambil data siswa berdasarkan id
+export async function ambilDataSiswa(id){
+  const docRef = doc(db, "siswa", id)
+  const docSnap = await getDoc(docRef)
+  
+  return await docSnap.data()
+}
+
+// fungsi untuk mengubah data siswa
+export async function ubahDataSiswa(id,nis,nama,kelas) {
+  await updateDoc(doc(db, "siswa",id),{
+  nis: nis,
+  nama: nama,
+  kelas: kelas
+})
+
+// alihkan ke halaman daftar siswa 
+window, location,herf = 'daftar.html'
 }

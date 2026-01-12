@@ -4,11 +4,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>edit</title>
+  <title>ubah data siswa</title>
+  
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="container">
+    <h1>form ubah siswa</h1>
+    
+    <form id="formUbah">
+      <label>NIS</label>
+      <input type="text" id="nis" />
+      
+      <label>Nama</label>
+      <input type="text" id="nama" />
+      
+      <label>kelas</label>
+      <select name="kelas" id="kelas">
+        <option value="X">X</option>
+        <option value="XI">XI</option>
+        <option value="XII">XII</option>
+      </select>
+      <button id="tombol" type="submit">simpan</button>
+      
+    </form>
+    <a href="daftar.html">dafta.html</a>
+  </div>
   
+    <script type="module">
+    import { ambilDataSiswa, ubahDataSiswa } from './main.js'
+    
+    // mengambil id dari URL 
+    const urlParams = new URLSearchParams (window.location.search)
+    const idSiswa = urlParams.get('id')
+    
+    // mengisi form dengan data siswa yang diambil dari Firestore
+    const siswa = await ambilDataSiswa(idSiswa)
+    
+    document.getElementById('nis').value = siswa.nis
+    document.getElementById('nama').value = siswa.nama
+    
+    const formUbah = document.getElementById('formUbah')
+    
+    formUbah.addEventListener('submit', function (e) {
+      // mencegah reload halaman
+      e.preventDefault()
+    
+    const nis = document.getElementById('nis').Value
+    const nama = document.getElementById('nama').Value
+    const kelas = document.getElementById('kelas').value
+    
+    // eksekusi fungsi ubah data siswa 
+    ubahDataSiswa(idSiswa, nis, nama, kelas)
+    })
+    </script>
 </body>
-
 </html>
